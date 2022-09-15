@@ -68,11 +68,9 @@ double PositiveRoot(float a, float b, float c)
     }
 
     deltaSqrt = sqrt(delta);
-
     firstX = ((-1 * b) + deltaSqrt)/(2*a);
-    secondX = ((-1 * b) - deltaSqrt)/(2*a);
 
-    return ((firstX > 0) ? firstX : ((secondX > 0) ? secondX : -1));
+    return firstX;
 }
 
 int main(int argc, char const *argv[])
