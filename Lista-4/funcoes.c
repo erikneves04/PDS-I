@@ -48,7 +48,7 @@ float resto(float a, float b)
 
 int form(int n)
 {
-    return (n == 0) ? 0 : n + somatorio(n - 1);
+    return (n == 1) ? 1 : (n * n + form(n - 1));
 }
 
 int mmc(int a, int b)
@@ -56,14 +56,23 @@ int mmc(int a, int b)
     return (a * b) / mdc(a, b);
 }
 
-int div(int a, int b)
+float mydiv(float a, float b)
 {
-    return (a < b) ? 0 : 1 + div(a - b, b);
+    return (a < b) ? 0 : 1 + mydiv(a - b, b);
 }
 
-float raiz(float n, float i)
+float raiz(float n, float chute)
 {
-    return (i * i > n) ? i - 1 : raiz(n, i + 1);
+    float chuteQuadrado = chute * chute;
+
+    if (chuteQuadrado < n + 0.001 && chuteQuadrado > n - 0.001)
+        return chute;
+    
+    if (chuteQuadrado > n)
+        return raiz(n, chute * 0.5);
+
+    if (chuteQuadrado < n)
+        return raiz(n, chute * 1.5);
 }
 
 int dig(int n)
@@ -71,9 +80,9 @@ int dig(int n)
     return (n < 10) ? n : n % 10 + dig(n / 10);
 }
 
-int exp(int a, int b)
+int myexp(int a, int b)
 {
-    return (b == 0) ? 1 : a * exp(a, b - 1);
+    return (b == 0) ? 1 : a * myexp(a, b - 1);
 }
 
 int crescente(int n)
@@ -125,13 +134,14 @@ int main(int argc, char const *argv[])
     scanf("%d", &integer1);
     printf(" Os numeros de 1 a %d em ordem decrescente sao: ", integer1);
     descrescente(integer1);
-
+    printf("\n");
+    
     printf(" G. Funcao recursiva para calcular o resto da divisao de dois numeros reais: \n");
     printf(" Digite dois numeros reais: ");
     scanf("%f %f", &decimal1, &decimal2);
     printf(" O resto da divisao de %f por %f e %f \n\n", decimal1, decimal2, resto(decimal1, decimal2));
-
-    printf(" H. Funcao recursiva para calcular a soma dos n primeiros numeros naturais: \n");
+    
+    printf(" H. Funcao recursiva para calcular a soma dos n^2 primeiros numeros naturais: \n");
     printf(" Digite um numero inteiro: ");
     scanf("%d", &integer1);
     printf(" A soma dos %d primeiros numeros naturais e %d \n\n", integer1, form(integer1));
@@ -142,9 +152,9 @@ int main(int argc, char const *argv[])
     printf(" O MMC de %d e %d e %d \n\n", integer1, integer2, mmc(integer1, integer2));
 
     printf(" J. Funcao recursiva para calcular a divisao inteira de dois numeros inteiros: \n");
-    printf(" Digite dois numeros inteiros: ");
-    scanf("%d %d", &integer1, &integer2);
-    printf(" A divisao inteira de %d por %d e %d \n\n", integer1, integer2, div(integer1, integer2));
+    printf(" Digite dois numeros decimais: ");
+    scanf("%f %f", &decimal1, &decimal2);
+    printf(" A divisao inteira de %f por %f e %f \n\n", decimal1, decimal2, mydiv(decimal1, decimal2));
 
     printf(" L. Funcao recursiva para calcular a raiz quadrada de um numero real: \n");
     printf(" Digite um numero real: ");
@@ -159,13 +169,14 @@ int main(int argc, char const *argv[])
     printf(" N. Funcao recursiva para calcular a potencia de um numero inteiro: \n");
     printf(" Digite dois numeros inteiros: ");
     scanf("%d %d", &integer1, &integer2);
-    printf(" A potencia de %d elevado a %d e %d \n\n", integer1, integer2, exp(integer1, integer2));
+    printf(" A potencia de %d elevado a %d e %d \n\n", integer1, integer2, myexp(integer1, integer2));
 
     printf(" O. Funcao recursiva para imprimir os numeros de 1 a n em ordem crescente: \n");
     printf(" Digite um numero inteiro: ");
     scanf("%d", &integer1);
     printf(" Os numeros de 1 a %d em ordem crescente sao: ", integer1);
     crescente(integer1);
-
+    printf("\n\n");
+    
     return SUCCESS;
 }
