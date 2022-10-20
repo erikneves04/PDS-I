@@ -10,7 +10,7 @@ bool EhPrimo(int x)
     int i;
 
     if(x <= 1)
-        return 0;
+        return false;
 
     for(i = 2; i < x; i++)
         if(x % i == 0)
@@ -54,6 +54,12 @@ void ValidatePrimeNumbers()
     FILE * destiny = fopen("Files/destiny_numbers.txt", "w + t");
     int number;
 
+    if (base == NULL || destiny == NULL)
+    {
+        printf("Error opening file.\n");
+        return;
+    }
+
     while(!feof(base))
     {
         fscanf(base, "%d", &number);
@@ -71,6 +77,12 @@ void SeparatesPrimeNumbers()
     FILE * notPrime = fopen("Files/not_prime_numbers.txt", "w + t");
     int number;
     
+    if (base == NULL || prime == NULL || notPrime == NULL)
+    {
+        printf("Error opening file.\n");
+        return;
+    }
+
     while(!feof(base))
     {
         fscanf(base, "%d", &number);
@@ -96,6 +108,12 @@ void ApplyQ4Rule()
     FILE * destiny = fopen("Files/destiny_q4_numbers.txt", "w + t");
     float number;
 
+    if (base == NULL || destiny == NULL)
+    {
+        printf("Error opening file.\n");
+        return;
+    }
+
     fprintf(destiny, "  x  | f(x)\n");
     while(!feof(base))
     {
@@ -118,6 +136,12 @@ void ApplyQ5Rule()
     FILE * destiny = fopen("Files/destiny_q5_numbers.txt", "w + t");
     float a, b, c, d;
     float number;
+
+    if (base == NULL || destiny == NULL)
+    {
+        printf("Error opening file.\n");
+        return;
+    }
 
     printf("Digite os valores para a, b, c e d: ");
     scanf("%f %f %f %f", &a, &b, &c, &d);
