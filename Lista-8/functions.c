@@ -125,6 +125,7 @@ void mult_matriz(int n, float A[][100], float B[][100], float P[][100])
         for(int j = 0; j < n; j++)
         {
             P[i][j] = 0;
+
             for(int k = 0; k < n; k++)
                 P[i][j] += A[i][k] * B[k][j];
         }
@@ -194,10 +195,10 @@ int main(int argc, char const *argv[])
                 printf("\n\n");
             break;
             case 6:
+                transposta(rows, matrz, T);
                 mult_matriz(rows, matrz, T, S);
                 printf("Produto das matrizes: \n\n");
                 PrintMatriz(S, rows, columns);
-                printf("\n");
             break;
             default:
                 printf("Escolha invalida. \n");
